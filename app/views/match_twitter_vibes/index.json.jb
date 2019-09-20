@@ -1,0 +1,15 @@
+json = {}
+json[:match_twitter_vibes] = @match_twitter_vibes.map do |match_twitter_vibe|
+  {
+    created_at: match_twitter_vibe.created_at,
+    updated_at: match_twitter_vibe.updated_at,
+    twitter_created_at: match_twitter_vibe.twitter_created_at,
+    score: match_twitter_vibe.score,
+    label: match_twitter_vibe.label,
+    twitter_full_text: match_twitter_vibe.twitter_full_text
+  }
+end
+
+json[:average_score] = @match_twitter_vibes.average(:score).round(2)
+
+json

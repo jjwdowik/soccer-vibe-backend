@@ -1,0 +1,13 @@
+.env
+.bundle
+.rspec-tm
+.rspec-local
+log/*.log
+tmp/
+*~
+*#*#*
+.DS_Store
+log/*
+.ruby-version
+.byebug_history
+dump.rdb

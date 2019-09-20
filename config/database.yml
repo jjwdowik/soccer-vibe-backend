@@ -1,0 +1,33 @@
+
+defaults: &defaults
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+  #TODO: Remove once issue is resolved: https://github.com/rails/rails/pull/33094
+  reaping_frequency: 0
+
+production:
+  <<: *defaults
+  url:  <%= ENV["DATABASE_URL"] %>
+
+staging:
+  <<: *defaults
+  url:  <%= ENV["DATABASE_URL"] %>
+
+demo:
+  <<: *defaults
+  url:  <%= ENV["DATABASE_URL"] %>
+
+development:
+  <<: *defaults
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV["DATABASE_DEVELOPMENT"] %>
+  username: <%= ENV["DATABASE_USERNAME_DEVELOPMENT"] %>
+  password: <%= ENV["DATABASE_PASSWORD_DEVELOPMENT"] %>
+#
+test:
+  <<: *defaults
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV["DATABASE_TEST"] %>
+  username: <%= ENV["DATABASE_USERNAME_TEST"] %>
+  password: <%= ENV["DATABASE_PASSWORD_TEST"] %>

@@ -1,0 +1,12 @@
+my_first_job:
+  cron: "*/1 * * * *"
+  class: "GetVibeJob"
+  queue: default
+matches_job:
+  cron: "*/20 * * * *"
+  class: "GetMatchesJob"
+  queue: default
+teams_job:
+  cron: "*/0 0 1 8 *"
+  class: "GetTeamsJob"
+  queue: default
