@@ -10,6 +10,6 @@ json[:match_twitter_vibes] = @match_twitter_vibes.map do |match_twitter_vibe|
   }
 end
 
-json[:average_score] = @match_twitter_vibes.average(:score).round(2)
+json[:average_score] = @average_score
 
 json
