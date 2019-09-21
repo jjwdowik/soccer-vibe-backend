@@ -23,7 +23,6 @@ class GetMatchesJob < ApplicationJob
           winner_side = match["homeTeam"]["name"]
         end
       end
-
       if !Match.exists?(:external_match_id => match["id"].to_i)
         new_match = Match.create(
                      :league_id => laliga_id,
@@ -35,7 +34,7 @@ class GetMatchesJob < ApplicationJob
                      :home_team_external_id => match["homeTeam"]["id"],
                      :home_team => match["homeTeam"]["name"],
                      :status => match["status"],
-                     :start_time => DateTime.parse(match["utcDate"]),
+                     :start_time => Time.parse(match["utcDate"]),
                      :data => match)
       else
         found_match = Match.where(:external_match_id => match["id"].to_i).first
@@ -43,6 +42,7 @@ class GetMatchesJob < ApplicationJob
                      :winner_side => winner_side,
                      :winner_external_id => winner_external_id,
                      :status => match["status"],
+                     :start_time => Time.parse(match["utcDate"]),
                      :data => match)
       end
 
