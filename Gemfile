@@ -59,4 +59,6 @@ gem 'football__data', git: 'https://github.com/jjwdowik/football-data', branch: 
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 1.1"
 gem "sentry-raven"
+gem 'rails_admin', '~> 2.0'
+gem 'devise'
 
