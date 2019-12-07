@@ -1,6 +1,7 @@
 json = {}
 json[:match_twitter_vibes] = @match_twitter_vibes.map do |match_twitter_vibe|
   {
+    id: match_twitter_vibe.id,
     created_at: match_twitter_vibe.created_at,
     updated_at: match_twitter_vibe.updated_at,
     twitter_created_at: match_twitter_vibe.twitter_created_at,
