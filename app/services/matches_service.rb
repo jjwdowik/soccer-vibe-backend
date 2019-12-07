@@ -13,9 +13,17 @@ class MatchesService
     tmt = TwitterMatchTracker.find_or_initialize_by(:match_id => match.id, :twitter_result_type => twitter_result_type)
     if tmt.twitter_since_id.nil?
       since_datetime = match.start_time-1.day
-      tweets = twitter_service.get_tweets_by_twitter_hashtag(hashtag, {since_datetime: since_datetime, until_datetime: match.start_time+1.day})
+      tweets = twitter_service.get_tweets_by_twitter_hashtag(hashtag, {
+        since_datetime: since_datetime, 
+        until_datetime: match.start_time+1.day,
+        result_type: twitter_result_type
+      })
     else
-      tweets = twitter_service.get_tweets_by_twitter_hashtag(hashtag, {since_id: tmt.twitter_since_id, until_datetime: match.start_time+1.day})
+      tweets = twitter_service.get_tweets_by_twitter_hashtag(hashtag, {
+        since_id: tmt.twitter_since_id, 
+        until_datetime: match.start_time+1.day,
+        result_type: twitter_result_type
+      })
     end
 
     potential_max_id = 0

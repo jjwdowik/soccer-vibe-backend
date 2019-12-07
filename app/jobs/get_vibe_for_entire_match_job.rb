@@ -3,17 +3,17 @@ class GetVibeForEntireMatchJob < ApplicationJob
 
   SLEEP_TIME = 0.5
   MAX_VIBE_COUNT = 1000
-
-  def perform(match_id)
-    do_job(match_id)
+  # twitter_result_type other option is "recent"
+  def perform(match_id, twitter_result_type = "popular")
+    do_job(match_id, twitter_result_type)
   end
 
-  def do_job(match_id)
+  def do_job(match_id, twitter_result_type)
     match = Match.find(match_id)
     matches_service = MatchesService.new
     finished_analying = false
     until finished_analying
-      analyzed_tweets = matches_service.analyze_match(match)
+      analyzed_tweets = matches_service.analyze_match(match, twitter_result_type)
       puts "analyzed_tweets"
       puts analyzed_tweets.count
       puts analyzed_tweets
