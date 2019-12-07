@@ -4,7 +4,7 @@ class GetVibeForEntireMatchJob < ApplicationJob
   SLEEP_TIME = 0.5
   MAX_VIBE_COUNT = 1000
   # twitter_result_type other option is "recent"
-  def perform(match_id, twitter_result_type = "popular")
+  def perform(match_id, twitter_result_type = "mixed")
     do_job(match_id, twitter_result_type)
   end
 

@@ -21,7 +21,7 @@ class GetVibeJob < ApplicationJob
     barcelona_active_match = Match.by_team_id(team_id).where("matches.league_id = ?", laliga_id).is_active_game(@current_time, end_time_check).first
     if !barcelona_active_match.nil? && !barcelona_active_match.twitter_hashtag.nil?
       start_id = barcelona_active_match.match_twitter_vibes.maximum(:id)
-      matches_service.analyze_match(barcelona_active_match)
+      matches_service.analyze_match(barcelona_active_match, "mixed")
       end_id = barcelona_active_match.match_twitter_vibes.maximum(:id)
       if start_id != end_id
         CHANNELS_CLIENT.trigger('soccer-vibe', 'new-vibes', {
