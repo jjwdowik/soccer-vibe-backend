@@ -8,7 +8,7 @@ class GetTeamsJob < ApplicationJob
   def do_job
     laliga_competition_id = 2014
     laliga_teams = FootballData.fetch(:competitions, :teams, id: laliga_competition_id)
-    laliga_teams_past_season = FootballData.fetch(:competitions, :teams, id: laliga_competition_id, season: "2018")
+    laliga_teams_past_season = FootballData.fetch(:competitions, :teams, id: laliga_competition_id, season: 1.year.ago.year.to_s)
     all_teams = laliga_teams["teams"] + laliga_teams_past_season["teams"]
     all_teams.each do |team|
       if !Team.exists?(:external_id => team["id"].to_i)
