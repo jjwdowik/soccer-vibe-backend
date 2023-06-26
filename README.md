@@ -1,6 +1,7 @@
 # README
 
 ```
+gem install foreman
 foreman start -f Procfile.dev
 ```
 
